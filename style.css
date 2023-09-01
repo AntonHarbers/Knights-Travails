@@ -62,3 +62,41 @@ h1{
 .white:hover{
     background-color: white;
 }
+
+#btn-section{
+    display: flex;
+    padding-bottom: 2rem;
+    gap: 1rem;
+}
+
+.btn{
+    height:50px;
+    width: 10rem;
+    border-radius: 5px;
+    border: 1px solid white;
+    background-color: white;
+}
+
+.btn:hover, .btn:focus{
+    background-color: rgb(251, 236, 201);
+    color: black;
+}
+
+.btn:active{
+    background-color: rgb(69, 69, 69);
+    color: white;
+}
+
+#knight{
+    height: calc(500px / 8);
+    width: calc(500px / 8);
+    background-size: cover;
+}
+
+.hidden{
+    display: none;
+}
+
+.destination{
+    background-color: rgb(255, 255, 0);
+}
