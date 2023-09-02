@@ -100,3 +100,8 @@ h1{
 .destination{
     background-color: rgb(255, 255, 0);
 }
+
+.path{
+    /* red background color */
+    background-color: rgb(255, 0, 0);
+}
