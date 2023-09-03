@@ -105,3 +105,8 @@ h1{
     /* red background color */
     background-color: rgb(255, 0, 0);
 }
+
+.travelled{
+    /* green background color */
+    background-color: rgb(0, 255, 0);
+}

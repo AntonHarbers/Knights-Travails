@@ -70,14 +70,19 @@ class Knight {
     }
   }
 
-  bfsShortestPath() {
+  clearVisited() {
+    for (let i = 0; i < boardSize; i++) {
+      for (let j = 0; j < boardSize; j++) {
+        this.visited[i][j] = false;
+      }
+    }
+  }
+
+  knightMoves() {
     // clear path and queue and visited
     this.path = [];
     this.queue = [];
-    this.visited = [];
-
-    // initialize visited
-    this.initializeVisited();
+    this.clearVisited();
 
     const dx = [2, 2, -2, -2, 1, 1, -1, -1];
     const dy = [1, -1, 1, -1, 2, -2, 2, -2];
@@ -93,7 +98,7 @@ class Knight {
         break;
       }
 
-      for (let i = 0; i < boardSize; i++) {
+      for (let i = 0; i < 8; i++) {
         const nextX = current[0] + dx[i];
         const nextY = current[1] + dy[i];
 
@@ -106,11 +111,24 @@ class Knight {
         ) {
           this.queue.push([nextX, nextY]);
           this.visited[nextX][nextY] = true;
+
+          this.visited[nextX][nextY] = current;
         }
       }
     }
 
-    return [];
+    if (this.path.length > 0) {
+      const path = [this.end];
+      let current = this.end;
+
+      while (current[0] !== this.start[0] || current[1] !== this.start[1]) {
+        current = this.visited[current[0]][current[1]];
+        path.push(current);
+      }
+      return path.reverse();
+    } else {
+      return [];
+    }
   }
 }
 
@@ -119,6 +137,7 @@ const boardInstance = new Board();
 boardInstance.createBoard();
 boardInstance.renderBoard();
 const knightInstance = new Knight();
+knightInstance.initializeVisited();
 
 placeKnightBtn.addEventListener("click", () => {
   isPlacingKnight = true;
@@ -131,18 +150,7 @@ selectDestinationBtn.addEventListener("click", () => {
 });
 
 resetBtn.addEventListener("click", () => {
-  isPlacingKnight = false;
-  isSelectingDestination = false;
-  knightInstance.start = [null, null];
-  knightInstance.end = [null, null];
-  knightInstance.visited = [];
-  knightInstance.queue = [];
-  knightInstance.path = [];
-  knightImg.classList.add("hidden");
-  const previousDestination = document.querySelector(".destination");
-  if (previousDestination) {
-    previousDestination.classList.remove("destination");
-  }
+  resetState();
 });
 
 placeRandomKnightBtn.addEventListener("click", () => {
@@ -160,18 +168,38 @@ placeRandomKnightBtn.addEventListener("click", () => {
   knightInstance.placeKnight(randomPosition);
 });
 
-
 travailBtn.addEventListener("click", () => {
-    isPlacingKnight = false;
-    isSelectingDestination = false;
-    StartPathfinding();
+  isPlacingKnight = false;
+  isSelectingDestination = false;
+  StartPathfinding();
 });
-
 
 function randomPositionHelper() {
   const randomRow = Math.floor(Math.random() * boardSize);
   const randomCol = Math.floor(Math.random() * boardSize);
   return [randomRow, randomCol];
+}
+
+function resetState(){
+  isPlacingKnight = false;
+  isSelectingDestination = false;
+  knightInstance.start = [null, null];
+  knightInstance.end = [null, null];
+  knightInstance.clearVisited();
+  knightInstance.queue = [];
+  knightInstance.path = [];
+  knightImg.classList.add("hidden");
+  const previousDestination = document.querySelector(".destination");
+  if (previousDestination) {
+    previousDestination.classList.remove("destination");
+  }
+
+  // remove travelled class from squares
+  const travelledSquares = document.querySelectorAll(".travelled");
+  travelledSquares.forEach((square) => {
+    square.classList.remove("travelled");
+  }
+  );
 }
 
 function SquareEvent() {
@@ -184,13 +212,15 @@ function SquareEvent() {
   }
 }
 
+
+
 function PlaceKnight(id) {
   // knight cant be set on destination
   if (id === `${knightInstance.end[0]}${knightInstance.end[1]}`) {
     return;
   }
   const position = id.split("");
-  knightInstance.placeKnight(position);
+  knightInstance.placeKnight([parseInt(position[0]), parseInt(position[1])]);
   isPlacingKnight = false;
 }
 
@@ -209,7 +239,7 @@ function SelectDestination(id) {
   const square = document.getElementById(`${id}`);
   square.classList.add("destination");
   const position = id.split("");
-  knightInstance.end = position;
+  knightInstance.end = [parseInt(position[0]), parseInt(position[1])];
   isSelectingDestination = false;
 }
 
@@ -218,13 +248,28 @@ function StartPathfinding() {
     alert("Please select a start and end point");
     return;
   }
-  const shortestPath = knightInstance.bfsShortestPath();
-  displayShortestPath(shortestPath);
+  const shortestPath = knightInstance.knightMoves();
+  animateKnightAlongShortestPath(shortestPath);
 }
 
-function displayShortestPath(path){
-    for(const [x,y] of path){
-        const square = document.getElementById(`${x}${y}`);
-        square.classList.add("path");
+function displayShortestPath(path) {
+  for (const [x, y] of path) {
+    const square = document.getElementById(`${x}${y}`);
+    square.classList.add("path");
+  }
+}
+
+function animateKnightAlongShortestPath(path){
+  let i = 0;
+  const interval = setInterval(() => {
+    if (i < path.length) {
+      const square = document.getElementById(`${path[i][0]}${path[i][1]}`);
+      square.appendChild(knightImg);
+      // make the squares that have been travelled red
+      square.classList.add("travelled");
+      i++;
+    } else {
+      clearInterval(interval);
     }
+  }, 500);
 }
