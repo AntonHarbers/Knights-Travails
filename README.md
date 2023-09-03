@@ -4,7 +4,6 @@
 
 To-Dos:
 
-Implement pathfinding
-Animate the path
-
-DONE
+Smoother Animation
+Chess Notation on the board
+Chess Notation for the shortest path

@@ -110,10 +110,10 @@ class Knight {
           !this.visited[nextX][nextY]
         ) {
           this.queue.push([nextX, nextY]);
-          this.visited[nextX][nextY] = true;
-
           this.visited[nextX][nextY] = current;
         }
+
+        console.log(this.visited)
       }
     }
 
@@ -212,8 +212,6 @@ function SquareEvent() {
   }
 }
 
-
-
 function PlaceKnight(id) {
   // knight cant be set on destination
   if (id === `${knightInstance.end[0]}${knightInstance.end[1]}`) {
@@ -250,13 +248,6 @@ function StartPathfinding() {
   }
   const shortestPath = knightInstance.knightMoves();
   animateKnightAlongShortestPath(shortestPath);
-}
-
-function displayShortestPath(path) {
-  for (const [x, y] of path) {
-    const square = document.getElementById(`${x}${y}`);
-    square.classList.add("path");
-  }
 }
 
 function animateKnightAlongShortestPath(path){
