@@ -8,6 +8,8 @@ const resetBtn = document.getElementById("reset-btn");
 const travailBtn = document.getElementById("travail-btn");
 const selectDestinationBtn = document.getElementById("select-destination-btn");
 const knightImg = document.getElementById("knight");
+const notationNumbers = document.getElementById("notation-numbers");
+const notationLetters = document.getElementById("notation-letters"); 
 let isSelectingDestination = false;
 let isPlacingKnight = false;
 
@@ -41,6 +43,22 @@ class Board {
         square.addEventListener("click", SquareEvent);
         boardDiv.appendChild(square);
       }
+    }
+  }
+
+  renderNotation(){
+    for (let i = 8; i > 0; i--) {
+      const number = document.createElement("div");
+      number.classList.add("notation");
+      number.innerText = `${i}`;
+      notationNumbers.appendChild(number);
+    }
+
+    for (let i = 0; i < boardSize; i++) {
+      const letter = document.createElement("div");
+      letter.classList.add("notation");
+      letter.innerText = `${String.fromCharCode(97 + i)}`;
+      notationLetters.appendChild(letter);
     }
   }
 }
@@ -136,6 +154,7 @@ class Knight {
 const boardInstance = new Board();
 boardInstance.createBoard();
 boardInstance.renderBoard();
+boardInstance.renderNotation();
 const knightInstance = new Knight();
 knightInstance.initializeVisited();
 
@@ -166,6 +185,7 @@ placeRandomKnightBtn.addEventListener("click", () => {
   }
 
   knightInstance.placeKnight(randomPosition);
+  clearPathHighlighting();
 });
 
 travailBtn.addEventListener("click", () => {
@@ -193,8 +213,10 @@ function resetState(){
   if (previousDestination) {
     previousDestination.classList.remove("destination");
   }
+  clearPathHighlighting();
+}
 
-  // remove travelled class from squares
+function clearPathHighlighting(){
   const travelledSquares = document.querySelectorAll(".travelled");
   travelledSquares.forEach((square) => {
     square.classList.remove("travelled");
@@ -217,6 +239,8 @@ function PlaceKnight(id) {
   if (id === `${knightInstance.end[0]}${knightInstance.end[1]}`) {
     return;
   }
+
+  clearPathHighlighting();
   const position = id.split("");
   knightInstance.placeKnight([parseInt(position[0]), parseInt(position[1])]);
   isPlacingKnight = false;
@@ -234,6 +258,7 @@ function SelectDestination(id) {
     previousDestination.classList.remove("destination");
   }
 
+  clearPathHighlighting();
   const square = document.getElementById(`${id}`);
   square.classList.add("destination");
   const position = id.split("");
@@ -256,8 +281,8 @@ function animateKnightAlongShortestPath(path){
     if (i < path.length) {
       const square = document.getElementById(`${path[i][0]}${path[i][1]}`);
       square.appendChild(knightImg);
-      // make the squares that have been travelled red
       square.classList.add("travelled");
+      knightInstance.start = path[i];
       i++;
     } else {
       clearInterval(interval);

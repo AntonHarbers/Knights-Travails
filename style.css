@@ -1,112 +1,191 @@
-*{
-    margin: 0;
-    padding: 0;
+* {
+  margin: 0;
+  padding: 0;
 }
 
-body{
-    background-color: beige;
+body {
+  background-color: beige;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100dvh;
+}
+
+h1 {
+  font-size: 50px;
+  padding-top: 50px;
+  margin-bottom: 4rem;
+}
+
+#board-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#board {
+  width: 500px;
+  height: 500px;
+  border: 1px solid black;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.square {
+  width: calc(500px / 8);
+  height: calc(500px / 8);
+  border: 1px solid black;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px;
+  cursor: pointer;
+}
+
+.black {
+  background-color: rgb(69, 69, 69);
+  color: white;
+}
+
+.black:hover {
+  background-color: black;
+}
+
+.white {
+  background-color: rgb(251, 236, 201);
+  color: black;
+}
+
+.white:hover {
+  background-color: white;
+}
+
+#btn-section {
+  display: flex;
+  padding-bottom: 2rem;
+  gap: 1rem;
+  margin-top: 4rem;
+}
+
+.btn {
+  height: 50px;
+  width: 10rem;
+  border-radius: 5px;
+  border: 1px solid white;
+  background-color: white;
+  cursor: pointer;
+}
+
+.btn:hover,
+.btn:focus {
+  background-color: rgb(251, 236, 201);
+  color: black;
+}
+
+.btn:active {
+  background-color: rgb(69, 69, 69);
+  color: white;
+}
+
+#knight {
+  height: calc(500px / 8);
+  width: calc(500px / 8);
+  background-size: cover;
+  transition: 1s ease-in-out;
+}
+
+.hidden {
+  display: none;
+}
+
+.destination {
+  background-color: rgb(255, 255, 0);
+  transition: 1s ease-in-out;
+}
+
+.travelled {
+  background-color: rgb(0, 255, 0);
+  transition: 1s ease-in-out;
+}
+
+.notation {
+  color: black;
+  font-size: 2rem;
+}
+
+#notation-numbers {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  height: 475px;
+  width: 20px;
+  padding: 10px;
+}
+
+#notation-letters {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 450px;
+  height: 20px;
+  padding: 10px;
+  margin-left: 2.5rem;
+}
+
+@media screen and (max-width: 900px) {
+
+    h1{
+        margin-bottom: 1rem;
+    }
+  #board {
+    width: 350px;
+    height: 350px;
+  }
+
+  .square {
+    width: calc(350px / 8);
+    height: calc(350px / 8);
+  }
+
+  #knight {
+    height: calc(350px / 8);
+    width: calc(350px / 8);
+  }
+
+  #btn-section {
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+
+  .notation {
+    color: black;
+    font-size: 1.5rem;
+  }
+
+  #notation-numbers {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    height: 100dvh;
-}
+    text-align: center;
+    height: 330px;
+    width: 20px;
+    padding: 10px;
+  }
 
-h1{
-    font-size: 50px;
-    padding-top: 50px;
-}
-
-#board-section{
-    width: 100%;
-    height: 100vh;
+  #notation-letters {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-}
-
-#board{
-    width: 500px;
-    height: 500px;
-    border: 1px solid black;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.square{
-    width: calc(500px / 8);
-    height: calc(500px / 8);
-    border: 1px solid black;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 50px;
-    cursor: pointer;
-}
-
-.black{
-    background-color: rgb(69, 69, 69);
-    color: white;
-}
-
-.black:hover{
-    background-color: black;
-}
-
-.white{
-    background-color: rgb(251, 236, 201);
-    color: black;
-}
-
-.white:hover{
-    background-color: white;
-}
-
-#btn-section{
-    display: flex;
-    padding-bottom: 2rem;
-    gap: 1rem;
-}
-
-.btn{
-    height:50px;
-    width: 10rem;
-    border-radius: 5px;
-    border: 1px solid white;
-    background-color: white;
-}
-
-.btn:hover, .btn:focus{
-    background-color: rgb(251, 236, 201);
-    color: black;
-}
-
-.btn:active{
-    background-color: rgb(69, 69, 69);
-    color: white;
-}
-
-#knight{
-    height: calc(500px / 8);
-    width: calc(500px / 8);
-    background-size: cover;
-}
-
-.hidden{
-    display: none;
-}
-
-.destination{
-    background-color: rgb(255, 255, 0);
-}
-
-.path{
-    /* red background color */
-    background-color: rgb(255, 0, 0);
-}
-
-.travelled{
-    /* green background color */
-    background-color: rgb(0, 255, 0);
+    width: 320px;
+    height: 20px;
+    padding: 10px;
+    margin-left: 2.5rem;
+  }
 }
