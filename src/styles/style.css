@@ -1,25 +1,49 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: 'Graduate', serif;
+  user-select: none;
 }
 
 body {
-  background-color: beige;
+  background: linear-gradient(
+    180deg,
+    rgb(0, 10, 24) 0%,
+    rgb(1, 43, 105) 50%,
+    rgb(1, 97, 161) 100%
+  );
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100dvh;
+  color: white;
 }
 
 h1 {
-  font-size: 50px;
+  font-size: 6rem;
   padding-top: 50px;
   margin-bottom: 4rem;
+  color: rgb(147, 159, 172);
+  text-shadow: 2px 2px 5px white;
+  animation: animateHeaderTextShadow 2s ease-in-out infinite;
+}
+
+@keyframes animateHeaderTextShadow {
+  0% {
+    text-shadow: 2px 2px 5px white;
+  }
+  50% {
+    text-shadow: 2px 2px 5px white, 2px 2px 5px white;
+  }
+  100% {
+    text-shadow: 2px 2px 5px white;
+  }
 }
 
 #board-section {
   width: 100%;
+  margin-left: -30px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -43,24 +67,17 @@ h1 {
   align-items: center;
   font-size: 50px;
   cursor: pointer;
+  transition: 1s ease-in-out;
 }
 
 .black {
-  background-color: rgb(69, 69, 69);
+  background-color: rgb(128, 128, 128);
   color: white;
-}
-
-.black:hover {
-  background-color: black;
 }
 
 .white {
   background-color: rgb(251, 236, 201);
   color: black;
-}
-
-.white:hover {
-  background-color: white;
 }
 
 #btn-section {
@@ -71,30 +88,54 @@ h1 {
 }
 
 .btn {
-  height: 50px;
-  width: 10rem;
+  height: 6rem;
+  width: 6rem;
   border-radius: 5px;
-  border: 1px solid white;
-  background-color: white;
+  border: 0px;
   cursor: pointer;
+  transition: 0.1s ease-in-out;
+  transform: scale(1);
 }
 
 .btn:hover,
 .btn:focus {
-  background-color: rgb(251, 236, 201);
-  color: black;
+  transform: scale(1.2);
+  outline: none;
 }
 
 .btn:active {
-  background-color: rgb(69, 69, 69);
-  color: white;
+  transform: scale(0.8);
+}
+
+#place-knight-btn {
+  background: url(../Icons/placeKnight.png) no-repeat center;
+  background-size: cover;
+}
+
+#place-random-knight-btn {
+  background: url(../Icons/randomKnight.png) no-repeat center;
+  background-size: cover;
+}
+
+#select-destination-btn {
+  background: url(../Icons/destination.png) no-repeat center;
+  background-size: cover;
+}
+
+#reset-btn {
+  background: url(../Icons/reset.png) no-repeat center;
+  background-size: cover;
+}
+
+#travail-btn {
+  background: url(../Icons/travail.png) no-repeat center;
+  background-size: cover;
 }
 
 #knight {
   height: calc(500px / 8);
   width: calc(500px / 8);
   background-size: cover;
-  transition: 1s ease-in-out;
 }
 
 .hidden {
@@ -102,17 +143,11 @@ h1 {
 }
 
 .destination {
-  background-color: rgb(255, 255, 0);
-  transition: 1s ease-in-out;
-}
-
-.travelled {
-  background-color: rgb(0, 255, 0);
-  transition: 1s ease-in-out;
+  background-color: rgb(148, 3, 42);
 }
 
 .notation {
-  color: black;
+  color: white;
   font-size: 2rem;
 }
 
@@ -138,10 +173,10 @@ h1 {
 }
 
 @media screen and (max-width: 900px) {
-
-    h1{
-        margin-bottom: 1rem;
-    }
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 3rem;
+  }
   #board {
     width: 350px;
     height: 350px;
@@ -163,26 +198,23 @@ h1 {
     margin-top: 1rem;
   }
 
+  .btn {
+    height: 4rem;
+    width: 4rem;
+  }
+
   .notation {
     color: black;
     font-size: 1.5rem;
   }
 
   #notation-numbers {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    text-align: center;
     height: 330px;
     width: 20px;
     padding: 10px;
   }
 
   #notation-letters {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     width: 320px;
     height: 20px;
     padding: 10px;

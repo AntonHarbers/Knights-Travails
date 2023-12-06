@@ -5,9 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Odin Project - Knights Travails</title>
     <link rel="icon" type="image/x-icon" href="src/favicon.ico">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./src/styles/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Graduate&display=swap" rel="stylesheet">
 </head>
 <body>
+    <audio id="moveAudio" src="src/moveSound.wav"></audio>
     <h1>Knights Travails</h1>
     <section id="board-section">
         <img id="knight" class="hidden" src="src/knight.png"></img>
@@ -17,12 +21,14 @@
     </section>
     <div id="notation-letters"></div>
     <section id="btn-section">
-        <button class="btn" id="place-knight-btn">Place Knight</button>
-        <button class="btn" id="place-random-knight-btn">Place Random Knight</button>
-        <button class="btn" id="select-destination-btn">Select Destination</button>
-        <button class="btn" id="reset-btn">Reset</button>
-        <button class="btn" id="travail-btn">Travail</button>
+        <button class="btn" id="reset-btn"></button>
+
+        <button class="btn" id="place-knight-btn"></button>
+        <button class="btn" id="place-random-knight-btn"></button>
+        <button class="btn" id="select-destination-btn"></button>
+        <button class="btn" id="travail-btn"></button>
     </section>
 </body>
-<script src="script.js"></script>
+
+<script src="src/scripts/script.js" type="module"></script>
 </html>
