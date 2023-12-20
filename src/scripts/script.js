@@ -14,6 +14,8 @@ import { randomPositionHelper } from './Helpers.js';
 let isSelectingDestination = false;
 let isPlacingKnight = false;
 
+// Event Listeners
+
 placeKnightBtn.addEventListener('click', () => {
   isPlacingKnight = true;
   isSelectingDestination = false;
@@ -48,6 +50,8 @@ travailBtn.addEventListener('click', () => {
   isSelectingDestination = false;
   StartPathfinding();
 });
+
+// Functions
 
 function StartPathfinding() {
   if (knightInstance.start[0] === null || knightInstance.end[0] === null) {

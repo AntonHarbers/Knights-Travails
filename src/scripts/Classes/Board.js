@@ -5,12 +5,7 @@ import {
   notationLetters,
 } from '../Variables.js';
 
-import {
-  PlaceKnight,
-  isPlacingKnight,
-  isSelectingDestination,
-  SelectDestination,
-} from '../script.js';
+import { PlaceKnight, isPlacingKnight, SelectDestination } from '../script.js';
 
 class Board {
   constructor() {
@@ -27,53 +22,49 @@ class Board {
   }
 
   renderBoard() {
-    const squares = document.querySelectorAll('.square');
-    squares.forEach((square) => {
-      square.remove();
-    });
+    ClearAllSquares();
     for (let i = 0; i < this.board.length; i++) {
       for (let j = 0; j < this.board[i].length; j++) {
-        const square = document.createElement('div');
-        square.setAttribute('id', `${i}${j}`);
-        square.classList.add('square');
-        // set dark or white square
-        if ((i + j) % 2 === 0) {
-          square.classList.add('black');
-        } else {
-          square.classList.add('white');
-        }
-        square.addEventListener('click', SquareEvent);
-        boardDiv.appendChild(square);
+        boardDiv.appendChild(CreateSquare(i, j));
       }
     }
   }
 
   renderNotation() {
     for (let i = 8; i > 0; i--) {
-      const number = document.createElement('div');
-      number.classList.add('notation');
-      number.innerText = `${i}`;
-      notationNumbers.appendChild(number);
+      notationNumbers.appendChild(CreateNotationElement(i, true));
     }
 
     for (let i = 0; i < boardSize; i++) {
-      const letter = document.createElement('div');
-      letter.classList.add('notation');
-      letter.innerText = `${String.fromCharCode(97 + i)}`;
-      notationLetters.appendChild(letter);
+      notationLetters.appendChild(CreateNotationElement(i, false));
     }
   }
 }
 
-// Square Event added to each square in renderBoard()
-function SquareEvent() {
-  if (isPlacingKnight) {
-    PlaceKnight(this.id);
+// Helper Functions
+function ClearAllSquares() {
+  while (boardDiv.firstChild) {
+    boardDiv.removeChild(boardDiv.firstChild);
   }
+}
 
-  if (isSelectingDestination) {
-    SelectDestination(this.id);
-  }
+function CreateNotationElement(i, isNum) {
+  const element = document.createElement('div');
+  element.classList.add('notation');
+  element.innerText = isNum ? `${i}` : `${String.fromCharCode(97 + i)}`;
+  return element;
+}
+
+function CreateSquare(i, j) {
+  const square = document.createElement('div');
+  const squareId = `${i}${j}`;
+  square.setAttribute('id', squareId);
+  square.classList.add('square');
+  square.classList.add((i + j) % 2 === 0 ? 'black' : 'white');
+  square.addEventListener('click', () =>
+    isPlacingKnight ? PlaceKnight(squareId) : SelectDestination(squareId)
+  );
+  return square;
 }
 
 export default Board;

@@ -3,9 +3,11 @@ import Knight from './Classes/Knight.js';
 import Board from './Classes/Board.js';
 
 function randomPositionHelper() {
-  const randomRow = Math.floor(Math.random() * boardSize);
-  const randomCol = Math.floor(Math.random() * boardSize);
-  return [randomRow, randomCol];
+  const randomPos = [
+    Math.floor(Math.random() * boardSize),
+    Math.floor(Math.random() * boardSize),
+  ];
+  return randomPos;
 }
 
 const InitKnight = () => {

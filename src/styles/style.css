@@ -29,32 +29,11 @@ h1 {
   animation: animateHeaderTextShadow 2s ease-in-out infinite;
 }
 
-@keyframes animateHeaderTextShadow {
-  0% {
-    text-shadow: 2px 2px 5px white;
-  }
-  50% {
-    text-shadow: 2px 2px 5px white, 2px 2px 5px white;
-  }
-  100% {
-    text-shadow: 2px 2px 5px white;
-  }
-}
-
-#board-section {
-  width: 100%;
-  margin-left: -30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#board {
-  width: 500px;
-  height: 500px;
-  border: 1px solid black;
-  display: flex;
-  flex-wrap: wrap;
+.backGroundCover {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
 }
 
 .square {
@@ -80,13 +59,6 @@ h1 {
   color: black;
 }
 
-#btn-section {
-  display: flex;
-  padding-bottom: 2rem;
-  gap: 1rem;
-  margin-top: 4rem;
-}
-
 .btn {
   height: 6rem;
   width: 6rem;
@@ -94,52 +66,16 @@ h1 {
   border: 0px;
   cursor: pointer;
   transition: 0.1s ease-in-out;
-  transform: scale(1);
+  outline: none;
 }
 
 .btn:hover,
 .btn:focus {
   transform: scale(1.2);
-  outline: none;
 }
 
 .btn:active {
   transform: scale(0.8);
-}
-
-#place-knight-btn {
-  background: url(../Icons/placeKnight.png) no-repeat center;
-  background-size: cover;
-}
-
-#place-random-knight-btn {
-  background: url(../Icons/randomKnight.png) no-repeat center;
-  background-size: cover;
-}
-
-#select-destination-btn {
-  background: url(../Icons/destination.png) no-repeat center;
-  background-size: cover;
-}
-
-#reset-btn {
-  background: url(../Icons/reset.png) no-repeat center;
-  background-size: cover;
-}
-
-#travail-btn {
-  background: url(../Icons/travail.png) no-repeat center;
-  background-size: cover;
-}
-
-#knight {
-  height: calc(500px / 8);
-  width: calc(500px / 8);
-  background-size: cover;
-}
-
-.hidden {
-  display: none;
 }
 
 .destination {
@@ -149,6 +85,54 @@ h1 {
 .notation {
   color: white;
   font-size: 2rem;
+}
+
+#board-section {
+  width: 100%;
+  margin-left: -30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#board {
+  width: 500px;
+  height: 500px;
+  border: 1px solid black;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#btn-section {
+  display: flex;
+  padding-bottom: 2rem;
+  gap: 1rem;
+  margin-top: 4rem;
+}
+
+#place-knight-btn {
+  background-image: url(../Assets/Icons/placeKnight.png);
+}
+
+#place-random-knight-btn {
+  background-image: url(../Assets/Icons/randomKnight.png);
+}
+
+#select-destination-btn {
+  background-image: url(../Assets/Icons/destination.png);
+}
+
+#reset-btn {
+  background-image: url(../Assets/Icons/reset.png);
+}
+
+#travail-btn {
+  background-image: url(../Assets/Icons/travail.png);
+}
+
+#knight {
+  height: calc(500px / 8);
+  width: calc(500px / 8);
 }
 
 #notation-numbers {
@@ -172,19 +156,33 @@ h1 {
   margin-left: 2.5rem;
 }
 
+.hidden {
+  display: none;
+}
+
 @media screen and (max-width: 900px) {
   h1 {
     font-size: 3rem;
     margin-bottom: 3rem;
   }
-  #board {
-    width: 350px;
-    height: 350px;
-  }
 
   .square {
     width: calc(350px / 8);
     height: calc(350px / 8);
+  }
+  .btn {
+    height: 4rem;
+    width: 4rem;
+  }
+
+  .notation {
+    color: black;
+    font-size: 1.5rem;
+  }
+
+  #board {
+    width: 350px;
+    height: 350px;
   }
 
   #knight {
@@ -198,16 +196,6 @@ h1 {
     margin-top: 1rem;
   }
 
-  .btn {
-    height: 4rem;
-    width: 4rem;
-  }
-
-  .notation {
-    color: black;
-    font-size: 1.5rem;
-  }
-
   #notation-numbers {
     height: 330px;
     width: 20px;
@@ -219,5 +207,17 @@ h1 {
     height: 20px;
     padding: 10px;
     margin-left: 2.5rem;
+  }
+}
+
+@keyframes animateHeaderTextShadow {
+  0% {
+    text-shadow: 2px 2px 5px white;
+  }
+  50% {
+    text-shadow: 2px 2px 5px white, 2px 2px 5px white;
+  }
+  100% {
+    text-shadow: 2px 2px 5px white;
   }
 }

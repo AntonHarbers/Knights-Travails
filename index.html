@@ -4,31 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Odin Project - Knights Travails</title>
-    <link rel="icon" type="image/x-icon" href="src/favicon.ico">
     <link rel="stylesheet" href="./src/styles/style.css">
+    <script src="./src/scripts/script.js" defer type="module"></script>   
+    <!-- FAVICON -->
+    <link rel="icon" type="image/x-icon" href="src/Assets/favicon.ico">
+    <!-- GOOGLE FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Graduate&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Graduate&display=swap" rel="stylesheet">
 </head>
 <body>
-    <audio id="moveAudio" src="src/moveSound.wav"></audio>
+    <audio id="moveAudio" src="src/Assets/moveSound.wav"></audio>
     <h1>Knights Travails</h1>
     <section id="board-section">
-        <img id="knight" class="hidden" src="src/knight.png"></img>
+        <img id="knight" class="hidden backGroundCover" src="src/Assets/knight.png"></img>
         <div id="notation-numbers"></div>
         <div id="board">
         </div>
     </section>
     <div id="notation-letters"></div>
     <section id="btn-section">
-        <button class="btn" id="reset-btn"></button>
-
-        <button class="btn" id="place-knight-btn"></button>
-        <button class="btn" id="place-random-knight-btn"></button>
-        <button class="btn" id="select-destination-btn"></button>
-        <button class="btn" id="travail-btn"></button>
+        <button class="btn backGroundCover" id="reset-btn"></button>
+        <button class="btn backGroundCover" id="place-knight-btn"></button>
+        <button class="btn backGroundCover" id="place-random-knight-btn"></button>
+        <button class="btn backGroundCover" id="select-destination-btn"></button>
+        <button class="btn backGroundCover" id="travail-btn"></button>
     </section>
 </body>
-
-<script src="src/scripts/script.js" type="module"></script>
 </html>
