@@ -1,4 +1,4 @@
-# Knights-Travails - The Odin Project
+# Knights Travails - The Odin Project
 
 A knights travails demo showcasing the shortest path a chess knight can move to a given destination.
 
