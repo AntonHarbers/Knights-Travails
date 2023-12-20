@@ -4,7 +4,7 @@ A knights travails demo showcasing the shortest path a chess knight can move to 
 
 Built for the odin project with HTML, CSS and Javascript.
 
-[Live Demo](https://antonharbers.github.io/Odin-Knights-Travails/)
+[Live Demo](https://antonharbers.github.io/Knights-Travails/)
 
 ![Repo Image](/src/Assets/repoImage.png)
 
